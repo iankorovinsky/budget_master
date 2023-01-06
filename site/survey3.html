@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Testing Website Design - I don't know what I'm doing</title>
+    
+    <link rel="stylesheet" href="survey-style3.css">
+    
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="viewport" content="width=device-width, intial-scale =1">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+</head>
+<body>
+<section id="banner">
+    <img src="images/money.png" class="logo">
+    <div class="banner-text">
+        <h1 id="title">University Budget Calculator</h1>
+        <p id="description">Continue inserting your information</p>
+    <div class="main">
+    <div class="main-content">
+        <div class="form-content">
+            <form id="survey-form">
+                <label for="ues" id="number">Please enter your planned savings from now until the end of your university education</label>
+                <input id="ues" type="number" /><br>
+
+                <label for="resp" id="number">Please enter the amount of money in your Registered Education Savings Plan(RESP)</label>
+                <input id="resp" type="number" /><br>
+
+                <label for="loans" id="number">Please enter the amount of money in personal loans you have</label>
+                <input id="loans" type="number" /><br>
+
+                <label for="oasp" id="number">Please enter the amount of money from your Ontariop Student Assisstance Program (OSAP)</label>
+                <input id="oasp" type="number" /><br>
+
+                <label for="govpro" id="number">Please enter the amount of money you recieved from other government assistance programs</label>
+                <input id="govpro" type="number" /><br>
+
+                <label for="grants" id="number">Please enter the amount of money you recieved from school scholarships and grants</label>
+                <input id="grants" type="number" /><br>
+
+                <button type="submit" id="submit" onclick="save()">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</section>
+
+
+
+<div id="sideNav">
+    <nav>
+    <ul>
+        <li><a href="index.html">HOME</a></li>    
+     
+
+    </ul>
+    </nav>
+</div>
+<div id="menuBtn">
+    <img src="images/menubutton.png" id="menu">
+</div>
+
+<script>
+    var menuBtn = document.getElementById("menuBtn")
+    var sideNav = document.getElementById("sideNav")
+    var menu = document.getElementById("menu")
+
+    sideNav.style.right = "-250px";
+
+    menuBtn.onclick = function(){
+        if (sideNav.style.right == "-250px"){
+            sideNav.style.right = "0";
+            menu.src = "images/closebutton.png";
+        }
+        else{
+            sideNav.style.right = "-250px";
+            menu.src = "images/menubutton.png";
+        }
+    }
+
+    var scroll = new SmoothScroll('a[href*="#"]', {
+	speed: 1000,
+	speedAsDuration: true
+    });
+
+    var form = document.getElementById('survey-form');
+        uesnum = document.getElementById('ues');
+        respnum = document.getElementById('resp')
+        loansnum = document.getElementById('loans');
+        oaspnum = document.getElementById('oasp');
+        govnum = document.getElementById('govpro');
+        grantsnum = document.getElementById('grants');
+    form.onsubmit = function() {
+        var JobMoney = uesnum.value;
+        var RESPMoney = respnum.value;
+        var LoansMoney = loansnum.value;
+        var OASPMoney = oaspnum.value;
+        var GovtMoney = govnum.value;
+        var GrantMoney = grantsnum.value;
+        var TSources = +JobMoney + +RESPMoney + +LoansMoney + +OASPMoney + +GovtMoney + +GrantMoney;
+        var queryString3 = TSources.toString();
+        localStorage.setItem("tResources", queryString3);
+        window.location.href='surveyEnd.html';
+        return false;
+    }
+    
+
+
+</script>
+
+</body>
+</html>

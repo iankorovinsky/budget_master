@@ -1,0 +1,89 @@
+<html>
+<head>
+    <title>Testing Website Design - I don't know what I'm doing</title>
+    
+    <link rel="stylesheet" href="survey-styleEnd.css">
+    
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <meta name="viewport" content="width=device-width, intial-scale =1">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+</head>
+<body>
+<section id="banner">
+    <img src="images/money.png" class="logo">
+    <div class="banner-text">
+        <h1 id="title">University Budget Calculator</h1>
+        <p id="description">You've reached the end!</p>
+        <h2 id="something">Greetings</h2>
+        <h3 id = "help">This should work</h3>
+    </div>
+</section>
+
+
+<div id="sideNav">
+    <nav>
+    <ul>
+        <li><a href="index.html">HOME</a></li>    
+        <li><a href="survey.html">GET STARTED</a></li>     
+
+    </ul>
+    </nav>
+</div>
+<div id="menuBtn">
+    <img src="images/menubutton.png" id="menu">
+</div>
+
+<script>
+    var menuBtn = document.getElementById("menuBtn")
+    var sideNav = document.getElementById("sideNav")
+    var menu = document.getElementById("menu")
+
+    sideNav.style.right = "-250px";
+
+    menuBtn.onclick = function(){
+        if (sideNav.style.right == "-250px"){
+            sideNav.style.right = "0";
+            menu.src = "images/closebutton.png";
+        }
+        else{
+            sideNav.style.right = "-250px";
+            menu.src = "images/menubutton.png";
+        }
+    }
+
+    var scroll = new SmoothScroll('a[href*="#"]', {
+	speed: 1000,
+	speedAsDuration: true
+    });
+
+    var TotalAdditCosts = localStorage.getItem("AdditCosts");
+    var TotalBasicCosts = localStorage.getItem("BasicCosts");
+    var TResources = localStorage.getItem("tResources");
+    var ExcessResources = (+TotalAdditCosts + +TotalBasicCosts) - +TResources;
+    var Message = "";
+    var Message2 = "";
+    if (ExcessResources <= 0){
+        Message = "Congratulations! You can pay off all of your debt!"
+    } else{
+        Message = "You will have $" + ExcessResources + " that you will not be able to pay off.";
+        if (ExcessResources < 5000){
+            Message2 = "Manage carefully, and you'll soon be free of debt!"
+        }
+        else if (ExcessResources >= 5000 && ExcessResources < 10000){
+            Message2 = "Please consider finding a Financial Assistant if you have no other options"
+        } else {
+            Message2 = "Please consider finding a Financial Assistant immediately."
+        }
+    }
+    document.getElementById("something").innerHTML = Message;
+    document.getElementById("help").innerHTML = Message2;
+
+</script>
+
+</body>
+</html>
